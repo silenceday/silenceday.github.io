@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="leetcode – Symmetric Tree题目链接  
+方法一###思考:首先在看到这道题的时候，想到了之前做题时看到别人求解二叉树时的一个做法:逐层判断，即将第一层根节点插入队列，进行判断，然后依次将队列中节点的左子节点和右子节点插入队列并同时删除原节点，使前队列中只有第二层节点，如此逐下判断，直至到达底层。考虑到该问题的解决，可以通过判断每层节点是否左右对称来判断，符合这个方式，尝试使">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2015/11/20/hello-world/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="leetcode – Symmetric Tree题目链接  
+方法一###思考:首先在看到这道题的时候，想到了之前做题时看到别人求解二叉树时的一个做法:逐层判断，即将第一层根节点插入队列，进行判断，然后依次将队列中节点的左子节点和右子节点插入队列并同时删除原节点，使前队列中只有第二层节点，如此逐下判断，直至到达底层。考虑到该问题的解决，可以通过判断每层节点是否左右对称来判断，符合这个方式，尝试使">
+<meta property="og:updated_time" content="2015-11-20T09:05:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="leetcode – Symmetric Tree题目链接  
+方法一###思考:首先在看到这道题的时候，想到了之前做题时看到别人求解二叉树时的一个做法:逐层判断，即将第一层根节点插入队列，进行判断，然后依次将队列中节点的左子节点和右子节点插入队列并同时删除原节点，使前队列中只有第二层节点，如此逐下判断，直至到达底层。考虑到该问题的解决，可以通过判断每层节点是否左右对称来判断，符合这个方式，尝试使">
+  
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    <div class="article-meta">
+      <a href="/2015/11/20/hello-world/" class="article-date">
+  <time datetime="2015-11-20T09:05:13.000Z" itemprop="datePublished">2015-11-20</time>
+</a>
+      
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode_–_Symmetric_Tree">leetcode – Symmetric Tree</h1><p><a href="https://leetcode.com/problems/symmetric-tree/" title="链接" target="_blank" rel="external">题目链接</a>  </p>
+<h2 id="方法一">方法一</h2><p>###思考:<br>首先在看到这道题的时候，想到了之前做题时看到别人求解二叉树时的一个做法:逐层判断，即将第一层根节点插入队列，进行判断，然后依次将队列中节点的左子节点和右子节点插入队列并同时删除原节点，使前队列中只有第二层节点，如此逐下判断，直至到达底层。考虑到该问题的解决，可以通过判断每层节点是否左右对称来判断，符合这个方式，尝试使用该方法解决。</p>
+<p>###实现原理:<br>将二叉树逐层按左右顺序插入队列，设此时队列长度为n,分别判断第i(范围[0, n/2))与第n - i - 1元素值，当两个值不同(只有一个为NULL,或者值val不同)，返回false，否则继续判断。当队列中节点全为NULL时，到达底部，说明此时二叉树对称，返回真。</p>
+<p>如二叉树{1,2,2,#,#,4,#,#,5},第一次队列{1},第二次{2,2},第三次{NULL,NULL,4,NULL},此时不对称，返回false。</p>
+<p>###代码实现:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">isSymmetric</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">    	<span class="built_in">std</span>::<span class="built_in">queue</span>&lt;TreeNode*&gt; nodes;</span><br><span class="line">        nodes.push(root);</span><br><span class="line">       	<span class="keyword">bool</span> isEnd = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">do</span>&#123;</span><br><span class="line">            isEnd = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">int</span> size = nodes.size();</span><br><span class="line">            <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;TreeNode*&gt; tmpVec;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++ )</span><br><span class="line">            &#123;</span><br><span class="line">                TreeNode* startNode = nodes.front();</span><br><span class="line">                <span class="keyword">if</span>(startNode == <span class="literal">NULL</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    tmpVec.push_back(<span class="literal">NULL</span>);</span><br><span class="line">                    tmpVec.push_back(<span class="literal">NULL</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    isEnd = <span class="literal">false</span>;</span><br><span class="line">                    tmpVec.push_back(startNode-&gt;left);</span><br><span class="line">                    tmpVec.push_back(startNode-&gt;right);</span><br><span class="line">                &#125;</span><br><span class="line">                nodes.pop();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(isEnd) <span class="keyword">break</span>;</span><br><span class="line">            <span class="comment">// if(tmpVec.size() % 2 != 0) return false;   // 隐含前提</span></span><br><span class="line">            <span class="keyword">int</span> tmpSize = tmpVec.size();</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; tmpSize; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>( i &lt; tmpSize / <span class="number">2</span> &amp;&amp; tmpVec.at(i) != tmpVec.at(tmpSize - i - <span class="number">1</span>))</span><br><span class="line">                    <span class="keyword">if</span>((!tmpVec.at(i) || !tmpVec.at(tmpSize - i - <span class="number">1</span>)) || tmpVec.at(i)-&gt;val != tmpVec.at(tmpSize - i - <span class="number">1</span>)-&gt;val)</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                nodes.push(tmpVec.at(i));</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(!isEnd);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>###结果:<br>Time Limit Exceeded错误,二叉树输入为[6,82,82,null,53,53,null,-58,null,null,-58,null,-85,-85,null,-9,null,null,-9,null,48,48,null,33,null,null,33,81,null,null,81,5,null,null,5,61,null,null,61,null,9,9,null,91,null,null,91,72,7,7,72,89,null,94,null,null,94,null,89,-27,null,-30,36,36,-30,null,-27,50,36,null,-80,34,null,null,34,-80,null,36,50,18,null,null,91,77,null,null,95,95,null,null,77,91,null,null,18,-19,65,null,94,null,-53,null,-29,-29,null,-53,null,94,null,65,-19,-62,-15,-35,null,null,-19,43,null,-21,null,null,-21,null,43,-19,null,null,-35,-15,-62,86,null,null,-70,null,19,null,55,-79,null,null,-96,-96,null,null,-79,55,null,19,null,-70,null,null,86,49,null,25,null,-19,null,null,8,30,null,82,-47,-47,82,null,30,8,null,null,-19,null,25,null,49]。时间复杂度太高了。在二叉树比较大的情况下该方法太慢。</p>
+<p>###后续:<br>在讨论里边，看到了别人的一个非递归实现，应该算是这个方法的优化，其实也是方法二的非递归实现。<br><figure class="highlight vbscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> boolean isSymmetric(TreeNode root) &#123;</span><br><span class="line">    <span class="keyword">if</span>(root==<span class="literal">null</span>)  return <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    Stack&lt;TreeNode&gt; stack = <span class="keyword">new</span> Stack&lt;TreeNode&gt;();</span><br><span class="line">    TreeNode <span class="built_in">left</span>, <span class="built_in">right</span>;</span><br><span class="line">    <span class="keyword">if</span>(root.<span class="built_in">left</span>!=<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(root.<span class="built_in">right</span>==<span class="literal">null</span>) return <span class="literal">false</span>;</span><br><span class="line">        stack.push(root.<span class="built_in">left</span>);</span><br><span class="line">        stack.push(root.<span class="built_in">right</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(root.<span class="built_in">right</span>!=<span class="literal">null</span>)&#123;</span><br><span class="line">        return <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(!stack.<span class="literal">empty</span>())&#123;</span><br><span class="line">        <span class="keyword">if</span>(stack.size()%<span class="number">2</span>!=<span class="number">0</span>)   return <span class="literal">false</span>;</span><br><span class="line">        <span class="built_in">right</span> = stack.pop();</span><br><span class="line">        <span class="built_in">left</span> = stack.pop();</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">right</span>.val!=<span class="built_in">left</span>.val) return <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">left</span>.<span class="built_in">left</span>!=<span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">right</span>.<span class="built_in">right</span>==<span class="literal">null</span>)   return <span class="literal">false</span>;</span><br><span class="line">            stack.push(<span class="built_in">left</span>.<span class="built_in">left</span>);</span><br><span class="line">            stack.push(<span class="built_in">right</span>.<span class="built_in">right</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">right</span>.<span class="built_in">right</span>!=<span class="literal">null</span>)&#123;</span><br><span class="line">            return <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">left</span>.<span class="built_in">right</span>!=<span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">right</span>.<span class="built_in">left</span>==<span class="literal">null</span>)   return <span class="literal">false</span>;</span><br><span class="line">            stack.push(<span class="built_in">left</span>.<span class="built_in">right</span>);</span><br><span class="line">            stack.push(<span class="built_in">right</span>.<span class="built_in">left</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">right</span>.<span class="built_in">left</span>!=<span class="literal">null</span>)&#123;</span><br><span class="line">            return <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="方法二">方法二</h1><p>###思考:<br>重新思考当看到一个给出的二叉树，目视判断是否对称的做法:</p>
+<ol>
+<li>跟节点是否为NULL, 真返回true,假继续;</li>
+<li>判断跟节点左子节点1和右子节点2是否相同： 其中一个为空，返回false，val不相等，返回false，否则继续;</li>
+<li>判断节点1的左子节点3和节点2的右子节点6是否相同，不同返回false，相同继续，判断节点1的右子节点4和节点2的左子节点5是否相同，不同返回false，相同继续;</li>
+<li>类似第二步和第三步，节点3的左子节点与节点6的右子节点比较，节点3的右子节点和节点6的左字节点比较，节点4的左字节点与节点5右子节点比较，节点4的右子节点与节点5的左子节点比较;任何一步节点不相同即返回false；</li>
+<li>依次往下…<br>可以大概看到，一直有重复类似的操作，跟节点子节点比较，节点1和节点2子节点比较，节点3和6子节点比较，节点4和节点5比较。而且这个比较操作一致，均是前一个节点的左子节点比较后一个节点右子节点，右子节点比较左字节点。</li>
+</ol>
+<p>###归纳观察结果:<br>以程序方式表述:</p>
+<ol>
+<li>compare(root-&gt;left, root-&gt;right);</li>
+<li><ul>
+<li>compare(root-&gt;left-&gt;left, root-&gt;right-&gt;right);</li>
+<li>compare(root-&gt;left-&gt;right, root-&gt;right-&gt;left);</li>
+</ul>
+</li>
+<li><ul>
+<li>compare(root-&gt;left-&gt;left-&gt;left,root-&gt;right-&gt;right-&gt;right);</li>
+<li>compare(root-&gt;left-&gt;left-&gt;right,root-&gt;right-&gt;right-&gt;left);</li>
+<li>compare(root-&gt;left-&gt;right-&gt;left,root-&gt;right-&gt;left-&gt;right);</li>
+<li>compare(root-&gt;left-&gt;right-&gt;right,root-&gt;right-&gt;left-&gt;left);</li>
+</ul>
+</li>
+<li>重复…<br>上述方式可以以递归方式实现，即:<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">bool compare(<span class="type">TreeNdoe</span>* <span class="keyword">left</span>, <span class="type">TreeNode</span>* <span class="keyword">right</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// TODO 比较left和right</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">if</span>(!compare(<span class="keyword">left</span>-&gt;<span class="keyword">left</span>, <span class="keyword">right</span>-&gt;<span class="keyword">right</span>)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span>(!compare(<span class="keyword">left</span>-&gt;<span class="keyword">right</span>, <span class="keyword">right</span>-&gt;<span class="keyword">left</span>)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>至此，找到以递归实现的方法.</p>
+<p>###代码实现:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    bool isSymmetric(<span class="type">TreeNode</span>* root) &#123;</span><br><span class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> compare(root-&gt;<span class="keyword">left</span>, root-&gt;<span class="keyword">right</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    bool compare(<span class="type">TreeNode</span>* <span class="keyword">left</span>, <span class="type">TreeNode</span>* <span class="keyword">right</span>)</span><br><span class="line">    &#123;</span><br><span class="line">		<span class="comment">// 看到一种这样的实现方式</span></span><br><span class="line">		<span class="comment">// if(!left || !right) &#123;</span></span><br><span class="line">		<span class="comment">// 		return left == right;</span></span><br><span class="line">		<span class="comment">// &#125;</span></span><br><span class="line">        <span class="keyword">if</span>(!<span class="keyword">left</span> &amp;&amp; !<span class="keyword">right</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span>(!<span class="keyword">left</span> || !<span class="keyword">right</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">left</span>-&gt;val != <span class="keyword">right</span>-&gt;val) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span>(!compare(<span class="keyword">left</span>-&gt;<span class="keyword">left</span>, <span class="keyword">right</span>-&gt;<span class="keyword">right</span>)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span>(!compare(<span class="keyword">left</span>-&gt;<span class="keyword">right</span>, <span class="keyword">right</span>-&gt;<span class="keyword">left</span>)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>Runtime: 4ms<br>完美解决。</p>
+<h2 id="总结">总结</h2><p>对于二叉树，优先以递归的方式思考解决方法会比较适合。</p>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+      </footer>
+    
+  </div>
+  
+    
+  
+</article>
+
+
+<section id="comments">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key=""2015/11/20/hello-world/"" data-title="请替换成文章的标题" data-url="请替换成文章的网址"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"toneday"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+</section>
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 John Doe&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, theme by <a href="http://github.com/ppoffice">PPOffice</a>
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+  </div>
+</body>
+</html>
